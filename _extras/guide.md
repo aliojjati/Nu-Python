@@ -3,107 +3,253 @@ layout: page
 title: "Instructor Notes"
 permalink: /guide/
 ---
-## Legend
-
-We are using a dataset with records on inflammation from patients following an
-arthritis treatment.
-
-We make reference in the lesson that this data is somehow strange. It is strange
-because it is fabricated! The script used to generate the inflammation data
-is included as [`tools/gen_inflammation.py`](tools/gen_inflammation.py).
+*   Why do we learn to use the shell?
+    *   Allows users to automate repetitive tasks
+    *   And capture small data manipulation steps that are normally not recorded
+        to make research reproducible
+*   The Problem
+    *   Running the same workflow on several samples can be unnecessarily labour intensive
+    *   Manual manipulation of data files:
+        *   is often not captured in documentation
+        *   is hard to reproduce
+        *   is hard to troubleshoot, review, or improve
+*   The Shell
+    *   Workflows can be automated through the use of shell scripts
+    *   Built-in commands allow for easy data manipulation (e.g. sort, grep, etc.)
+    *   Every step can be captured in the shell script and allow reproducibility and easy troubleshooting
 
 ## Overall
 
-This lesson is written as an introduction to Python,
-but its real purpose is to introduce the single most important idea in programming:
-how to solve problems by building functions,
-each of which can fit in a programmer's working memory.
-In order to teach that,
-we must teach people a little about
-the mechanics of manipulating data with lists and file I/O
-so that their functions can do things they actually care about.
-Our teaching order tries to show practical uses of every idea as soon as it is introduced;
-instructors should resist the temptation to explain
-the "other 90%" of the language
-as well.
+Many people have questioned whether we should still teach the shell.
+After all,
+anyone who wants to rename several thousand data files
+can easily do so interactively in the Python interpreter,
+and anyone who's doing serious data analysis
+is probably going to do most of their work inside the IPython Notebook or R Studio.
+So why teach the shell?
 
-The final example asks them to build a command-line tool
-that works with the Unix pipe-and-filter model.
-We do this because it is a useful skill
-and because it helps learners see that the software they use isn't magical.
-Tools like `grep` might be more sophisticated than
-the programs our learners can write at this point in their careers,
-but it's crucial they realize this is a difference of scale rather than kind.
+The first answer is,
+"Because so much else depends on it."
+Installing software,
+configuring your default editor,
+and controlling remote machines frequently assume a basic familiarity with the shell,
+and with related ideas like standard input and output.
+Many tools also use its terminology
+(for example, the `%ls` and `%cd` magic commands in IPython).
 
-Explain that we use Python because:
+The second answer is,
+"Because it's an easy way to introduce some fundamental ideas about how to use computers."
+As we teach people how to use the Unix shell,
+we teach them that they should get the computer to repeat things
+(via tab completion,
+`!` followed by a command number,
+and `for` loops)
+rather than repeating things themselves.
+We also teach them to take things they've discovered they do frequently
+and save them for later re-use
+(via shell scripts),
+to give things sensible names,
+and to write a little bit of documentation
+(like comment at the top of shell scripts)
+to make their future selves' lives better.
 
-*   It's free.
-*   It has a lot of scientific libraries, and more are constantly being added.
-*   It has a large scientific user community.
-*   It's easier for novices to learn than most of the mature alternatives.
-    (Software Carpentry originally used Perl;
-    when we switched,
-    we found that we could cover as much material in two days in Python
-    as we'd covered in three days in Perl,
-    and that retention was higher.)
+The third answer is,
+"Because it enables use of many domain-specific tools and compute resources researchers cannot access otherwise."
+Familiarity with the shell is very useful for remote accessing machines,
+using high-performance computing infrastructure,
+and running new specialist tools in many disciplines.
+We do not teach HPC or domain-specific skills here
+but lay the groundwork for further development of these skills.
+In particular,
+understanding the syntax of commands, flags, and help systems is useful for domain specific tools
+and understanding the file system (and how to navigate it) is useful for remote access.
 
-We do *not* include instructions on running the Jupyter Notebook in the tutorial
-because we want to focus on the language rather than the tools.
-Instructors should, however, walk learners through some basic operations:
+Finally,
+and perhaps most importantly,
+teaching people the shell lets us teach them
+to think about programming in terms of function composition.
+In the case of the shell,
+this takes the form of pipelines rather than nested function calls,
+but the core idea of "small pieces, loosely joined" is the same.
 
-*   Launch from the command line with `jupyter notebook`.
-*   Create a new notebook.
-*   Enter code or data in a cell and execute it.
-*   Explain the difference between `In[#]` and `Out[#]`.
+All of this material can be covered in three hours
+as long as learners using Windows do not run into roadblocks such as:
 
-Watching the instructor grow programs step by step
-is as helpful to learners as anything to do with Python.
-Resist the urge to update a single cell repeatedly
-(which is what you'd probably do in real life).
-Instead,
-clone the previous cell and write the update in the new copy
-so that learners have a complete record of how the program grew.
-Once you've done this,
-you can say,
-"Now why don't we just break things into small functions right from the start?"
+*   not being able to figure out where their home directory is
+    (particularly if they're using Cygwin);
+*   not being able to run a plain text editor;
+    and
+*   the shell refusing to run scripts that include DOS line endings.
 
-The discussion of command-line scripts
-assumes that students understand standard I/O and building filters,
-which are covered in the lesson on the shell.
+## Preparing to Teach
 
-## Frequently Argued Issues (FAI)
+*   Use the `data` directory for in-workshop exercises and live coding examples.
+     You can clone the shell-novice directory or use the `Download ZIP`
+     button on the right to get the entire [repository](https://github.com/swcarpentry/shell-novice). We also now provide
+     a zip file of the `data` directory that can be downloaded on its own
+     from the repository by right-click + save or see the ["setup"]({{ page.root }}/setup/) page on the lesson website for more details.  
 
-*   `import ... as ...` syntax.
+*   Website: various practices have been used.
+    *   Option 1: Can give links to learners before the lesson so they can follow along,
+        catch up,
+	and see exercises (particularly if you're following the lesson content without many changes).
+    *   Option 2: Don't show the website to the learners during the lesson, as it can be distracting:
+        students may read instead of listen, and having another window open is an additional cognitive load.
+	*   In any case, make sure to point to website as a post-workshop reference.
 
-    This syntax is commonly used in the scientific Python community;
-    it is explicitly recommended in documentation to `import numpy as np`
-    and `import matplotlib.pyplot as plt`. Despite that, we have decided
-    not to introduce aliasing imports in this novice lesson due to the
-    additional cognitive load it puts on students, despite the typing that
-    it saves. A good summary of arguments for and against can be found in
-    [PR #61](https://github.com/swcarpentry/python-novice-inflammation/pull/61).
+*   Content:
+    Unless you have a truly generous amount of time (4+ hours),
+    it is likely that you will not cover ALL the material in this lesson in a single half-day session.
+    Plan ahead on what you might skip, what you really want to emphasize, etc.
 
-    It is up to you as an individual instructor whether you want to introduce
-    these aliases when you teach this lesson, but we encourage you to please
-    read those arguments thoroughly before deciding one way or the other.
+*   Exercises:
+    Think in advance about how you might want to handle exercises during the lesson.
+    How are you assigning them (website, slide, handout)?
+    Do you want everyone to try it and then you show the solution?
+    Have a learner show the solution?
+    Have groups each do a different exercise and present their solutions?
 
-*   NumPy methods.
+*   `reference.md` can be printed out and given to students as a reference, your choice.
 
-    We used to use NumPy array methods in the first [NumPy topic]({{ page.root }}/01-numpy/).
-    We switched these methods to the equivalent functions because a majority
-    of instructors supported the change; see
-    [PR #244](https://github.com/swcarpentry/python-novice-inflammation/pull/244)
-    for detailed arguments for and against the change.
+*   Other preparation:
+    Feel free to add your own examples or side comments,
+    but know that it shouldn't be necessary:
+    the topics and commands can be taught as given on the lesson pages.
+    If you think there is a place where the lesson is lacking,
+    feel free to file an issue or submit a pull request.
 
-*   Underscores vs. hyphens in filenames
+## Teaching Notes
 
-    We used to use hyphens in filenames in order to signify that these Python
-    files should only be run as scripts and never imported. However, after some
-    [discussion](https://github.com/swcarpentry/python-novice-inflammation/pull/254),
-    including an informal Twitter poll, we switched over to underscores because
-    many files that start off as Python scripts end up being imported eventually.
-    For that reason, we also added `if __name__ == '__main__'` guards around
-    `main()` calls, which is how real-world Python scripts ensure that imports
-    do not result in side-effects.
+*   Super cool online resource!
+    <http://explainshell.com/> will dissect any shell command you type in
+    and display help text for each piece. Additional nice manual tool could be <http://tldr-pages.github.io/> with short very descriptive manuals for shell commands, useful especially on Windows while using Git BASH where `man` could not work.
 
-After discussing the challenges is a good time to introduce the `b *= 2` syntax.
+*   Another super cool online resource is <http://www.shellcheck.net>,
+    which will check shell scripts (both uploaded and typed in) for common errors.
+
+*   Resources for "splitting" your shell so that recent commands
+    remain in view: <https://github.com/rgaiacs/swc-shell-split-window>.
+
+*   Running a text editor from the command line can be
+    the biggest stumbling block during the entire lesson:
+    many will try to run the same editor as the instructor
+    (which may leave them trapped in the awful nether hell that is Vim),
+    or will not know how to navigate to the right directory
+    to save their file,
+    or will run a word processor rather than a plain text editor.
+    The quickest way past these problems is to have more knowledgeable learners
+    help those who need it.
+
+*   Introducing and navigating the filesystem in the shell (covered in
+    [Navigating Files and Directories]({{ page.root }}/02-filedir/) section) can be confusing. You may have both terminal and GUI file explorer open side by side so learners can see the content and file structure while they're using terminal to navigate the system.
+
+*   Tab completion sounds like a small thing: it isn't.
+    Re-running old commands using `!123` or `!wc`
+    isn't a small thing either,
+    and neither are wildcard expansion and `for` loops.
+    Each one is an opportunity to repeat one of the big ideas of Software Carpentry:
+    if the computer *can* repeat it,
+    some programmer somewhere will almost certainly have built
+    some way for the computer *to* repeat it.
+
+*   Building up a pipeline with four or five stages,
+    then putting it in a shell script for re-use
+    and calling that script inside a `for` loop,
+    is a great opportunity to show how
+    "seven plus or minus two"
+    connects to programming.
+    Once we have figured out how to do something moderately complicated,
+    we make it re-usable and give it a name
+    so that it only takes up one slot in working memory
+    rather than several.
+    It is also a good opportunity to talk about exploratory programming:
+    rather than designing a program up front,
+    we can do a few useful things
+    and then retroactively decide which are worth encapsulating
+    for future re-use.
+
+*   If everything is going well, you can drive home the point that file
+    extensions are essentially there to help computers (and human
+    readers) understand file content and are not a requirement of files
+    (covered briefly in [Navigating Files and Directories]({{ page.root }}/02-filedir/)).
+    This can be done in the [Pipes and Filters]({{ page.root }}/04-pipefilter/) section by showing that you
+    can redirect standard output to a file without the .txt extension
+    (e.g., lengths), and that the resulting file is still a perfectly usable text file.
+    Make the point that if double-clicked in the GUI, the computer will
+    probably ask you what you want to do.
+
+*   We have to leave out many important things because of time constraints,
+    including file permissions, job control, and SSH.
+    If learners already understand the basic material,
+    this can be covered instead using the online lessons as guidelines.
+    These limitations also have follow-on consequences:
+
+*   It's hard to discuss `#!` (shebang) without first discussing
+    permissions, which we don't do.  `#!` is also [pretty
+    complicated][shebang], so even if we did discuss permissions, we
+    probably still wouldn't want to discuss `#!`.
+
+*   Installing Bash and a reasonable set of Unix commands on Windows
+    always involves some fiddling and frustration.
+    Please see the latest set of installation guidelines for advice,
+    and try it out yourself *before* teaching a class.
+
+*   On Windows machines
+    if `nano` hasn't been properly installed with the
+    [Software Carpentry Windows Installer][windows-installer]
+    it is possible to use `notepad` as an alternative.  There will be a GUI
+    interface and line endings are treated differently, but otherwise, for
+    the purposes of this lesson, `notepad` and `nano` can be used almost interchangeably.
+
+*   On Windows, it appears that:
+
+    ~~~
+    $ cd
+    $ cd Desktop
+    ~~~
+    {: .bash}
+
+    will always put someone on their desktop.
+    Have them create the example directory for the shell exercises there
+    so that they can find it easily
+    and watch it evolve.
+
+*  Stay within POSIX-compliant commands, as all the teaching materials do.
+   Your particular shell may have extensions beyond POSIX that are not available
+   on other machines, especially the default OSX bash and Windows bash emulators.
+   For example, POSIX `ls` does not have an `--ignore=` or `-I` option, and POSIX
+   `head` takes `-n 10` or `-10`, but not the long form of `--lines=10`.
+
+## Windows
+
+Installing Bash and a reasonable set of Unix commands on Windows
+always involves some fiddling and frustration.
+Please see the latest set of installation guidelines for advice,
+and try it out yourself *before* teaching a class.
+Options we have explored include:
+
+1.  [msysGit](http://msysgit.github.io/) (also called "Git Bash"),
+2.  [Cygwin](http://www.cygwin.com/),
+3.  using a desktop virtual machine, and
+4.  having learners connect to a remote Unix machine (typically a VM in the cloud).
+
+Cygwin was the preferred option until mid-2013,
+but once we started teaching Git,
+msysGit proved to work better.
+Desktop virtual machines and cloud-based VMs work well for technically sophisticated learners,
+and can reduce installation and configuration at the start of the workshop,
+but:
+
+1.  they don't work well on underpowered machines,
+2.  they're confusing for novices (because simple things like copy and paste work differently),
+3.  learners leave the workshop without a working environment on their operating system of choice, and
+4.  learners may show up without having downloaded the VM or the wireless will go down (or become congested) during the lesson.
+
+Whatever you use,
+please *test it yourself* on a Windows machine *before* your workshop:
+things may always have changed behind your back since your last workshop.
+And please also make use of our
+[Software Carpentry Windows Installer][windows-installer].
+
+[shebang]: http://www.in-ulm.de/~mascheck/various/shebang/
+[windows-installer]: {{ site.swc_github }}/windows-installer
