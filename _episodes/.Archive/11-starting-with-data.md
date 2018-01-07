@@ -1,7 +1,7 @@
 ---
-title: Starting With Data
-teaching: 30
-exercises: 30
+title: Starting With Pandas
+teaching: 
+exercises: 
 questions:
     - " How can I import data in Python?"
     - " What is Pandas?"
@@ -377,21 +377,21 @@ summary stats.
 >   `by_plot['weight'].describe()`
 >
 >
->> ## Did you get #3 right?
->> **A Snippet of the Output from challenge 3 looks like:**
->>
->> ```
->>	plot
->>	1     count    1903.000000
->>	      mean       51.822911
->>	      std        38.176670
->>	      min         4.000000
->>	      25%        30.000000
->>	      50%        44.000000
->>	      75%        53.000000
->>	      max       231.000000
->>          ...
->> ```
+[//]: #>> ## Did you get #3 right?
+[//]: #>> **A Snippet of the Output from challenge 3 looks like:**
+[//]: #>>
+[//]: #>> ```
+[//]: #>>	plot
+[//]: #>>	1     count    1903.000000
+[//]: #>>	      mean       51.822911
+[//]: #>>	      std        38.176670
+[//]: #>>	      min         4.000000
+[//]: #>>	      25%        30.000000
+[//]: #>>	      50%        44.000000
+[//]: #>>	      75%        53.000000
+[//]: #>>	      max       231.000000
+[//]: #>>          ...
+[//]: #>> ```
 > {: .solution}
 {: .challenge}
 
@@ -501,64 +501,64 @@ total_count.plot(kind='bar');
 > a stacked plot.
 >
 >
->> ## Solution to Summary Challenge
->>
->> First we group data by plot and by sex, and then calculate a total for each plot.
->>
->> ```python
->> by_plot_sex = surveys_df.groupby(['plot_id','sex'])
->> plot_sex_count = by_plot_sex['weight'].sum()
->> ```
->>
->> This calculates the sums of weights for each sex within each plot as a table
->>
->> ```
->> plot  sex
->> plot_id  sex
->> 1        F      38253
->>          M      59979
->> 2        F      50144
->>          M      57250
->> 3        F      27251
->>          M      28253
->> 4        F      39796
->>          M      49377
->> <other plots removed for brevity>
->> ```
->>
->> Below we'll use `.unstack()` on our grouped data to figure out the total weight that each sex contributed to each plot.
->>
->> ```python
->> by_plot_sex = surveys_df.groupby(['plot_id','sex'])
->> plot_sex_count = by_plot_sex['weight'].sum()
->> plot_sex_count.unstack()
->> ```
->>
->> The `unstack` function above will display the following output:
->>
->> ```
->> sex          F      M
->> plot_id              
->> 1        38253  59979
->> 2        50144  57250
->> 3        27251  28253
->> 4        39796  49377
->> <other plots removed for brevity>
->> ```
->>
->> Now, create a stacked bar plot with that data where the weights for each sex are stacked by plot.
->>
->> Rather than display it as a table, we can plot the above data by stacking the values of each sex as follows:
->>
->> ```python
->> by_plot_sex = surveys_df.groupby(['plot_id','sex'])
->> plot_sex_count = by_plot_sex['weight'].sum()
->> spc = plot_sex_count.unstack()
->> s_plot = spc.plot(kind='bar',stacked=True,title="Total weight by plot and sex")
->> s_plot.set_ylabel("Weight")
->> s_plot.set_xlabel("Plot")
->> ```
->>
->> ![Stacked Bar Plot](../fig/stackedBar.png)
+[//]: #>> ## Solution to Summary Challenge
+[//]: #>>
+[//]: #>> First we group data by plot and by sex, and then calculate a total for each plot.
+[//]: #>>
+[//]: #>> ```python
+[//]: #>> by_plot_sex = surveys_df.groupby(['plot_id','sex'])
+[//]: #>> plot_sex_count = by_plot_sex['weight'].sum()
+[//]: #>> ```
+[//]: #>>
+[//]: #>> This calculates the sums of weights for each sex within each plot as a table
+[//]: #>>
+[//]: #>> ```
+[//]: #>> plot  sex
+[//]: #>> plot_id  sex
+[//]: #>> 1        F      38253
+[//]: #>>          M      59979
+[//]: #>> 2        F      50144
+[//]: #>>          M      57250
+[//]: #>> 3        F      27251
+[//]: #>>          M      28253
+[//]: #>> 4        F      39796
+[//]: #>>          M      49377
+[//]: #>> <other plots removed for brevity>
+[//]: #>> ```
+[//]: #>>
+[//]: #>> Below we'll use `.unstack()` on our grouped data to figure out the total weight that each sex contributed to each plot.
+[//]: #>>
+[//]: #>> ```python
+[//]: #>> by_plot_sex = surveys_df.groupby(['plot_id','sex'])
+[//]: #>> plot_sex_count = by_plot_sex['weight'].sum()
+[//]: #>> plot_sex_count.unstack()
+[//]: #>> ```
+[//]: #>>
+[//]: #>> The `unstack` function above will display the following output:
+[//]: #>>
+[//]: #>> ```
+[//]: #>> sex          F      M
+[//]: #>> plot_id              
+[//]: #>> 1        38253  59979
+[//]: #>> 2        50144  57250
+[//]: #>> 3        27251  28253
+[//]: #>> 4        39796  49377
+[//]: #>> <other plots removed for brevity>
+[//]: #>> ```
+[//]: #>>
+[//]: #>> Now, create a stacked bar plot with that data where the weights for each sex are stacked by plot.
+[//]: #>>
+[//]: #>> Rather than display it as a table, we can plot the above data by stacking the values of each sex as follows:
+[//]: #>>
+[//]: #>> ```python
+[//]: #>> by_plot_sex = surveys_df.groupby(['plot_id','sex'])
+[//]: #>> plot_sex_count = by_plot_sex['weight'].sum()
+[//]: #>> spc = plot_sex_count.unstack()
+[//]: #>> s_plot = spc.plot(kind='bar',stacked=True,title="Total weight by plot and sex")
+[//]: #>> s_plot.set_ylabel("Weight")
+[//]: #>> s_plot.set_xlabel("Plot")
+[//]: #>> ```
+[//]: #>>
+[//]: #>> ![Stacked Bar Plot](../fig/stackedBar.png)
 > {: .solution}
 {: .challenge}
