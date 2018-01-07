@@ -1,6 +1,3 @@
-{% comment %}
-  Advertising box at the top of a workshop website home page.
-{% endcomment %}
 <div class="jumbotron">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -12,7 +9,7 @@
         </div>
         <div class="col-md-6">
           <p>
-          <strong>Instructors:</strong>
+          <strong>Instructor:</strong>
           {% if page.instructor %}
           {{page.instructor | join: ', ' %}}
           {% else %}
@@ -21,7 +18,7 @@
           </p>
           {% if page.helper %}
           <p>
-          <strong>Helpers:</strong>
+          <strong>Helper:</strong>
           {{page.helper | join: ', ' %}}
           </p>
           {% endif %}
