@@ -504,7 +504,7 @@ often reveals common reasons why you might get that error.
 >
 > > ## Solution
 [//]: # > > `SyntaxError` for missing `():` at end of first line,
-> `IndentationError` for mismatch between second and third lines.
+[//]: #> `IndentationError` for mismatch between second and third lines.
 [//]: # > > A fixed version is:
 [//]: # > >
 [//]: # > > ~~~
@@ -579,5 +579,5 @@ often reveals common reasons why you might get that error.
 [//]: # > > print('My favorite season is ', seasons[-1])
 [//]: # > > ~~~
 [//]: # > > {: .python}
-> {: .solution}
+[//]: # > {: .solution}
 {: .challenge}
