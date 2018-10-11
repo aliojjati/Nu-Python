@@ -570,7 +570,7 @@ often reveals common reasons why you might get that error.
 > ~~~
 > {: .python}
 >
-[//]: # > > ## Solution
+> > ## Solution
 [//]: # > > `IndexError`; the last entry is `seasons[3]`, so `seasons[4]` doesn't make sense.
 [//]: # > > A fixed version is:
 [//]: # > >
@@ -579,5 +579,5 @@ often reveals common reasons why you might get that error.
 [//]: # > > print('My favorite season is ', seasons[-1])
 [//]: # > > ~~~
 [//]: # > > {: .python}
-[//]: # > {: .solution}
+> {: .solution}
 {: .challenge}
