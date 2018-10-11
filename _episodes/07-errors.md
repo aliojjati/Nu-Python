@@ -478,12 +478,12 @@ often reveals common reasons why you might get that error.
 > ~~~
 > {: .error}
 >
-> > ## Solution
-> > 1. 3 levels
-> > 2. `print_message`
-> > 3. 11
-> > 4. `KeyError`
-> > 5. There isn't really a message; you're supposed to infer that `Friday` is not a key in `messages`.
+[//]: # > > ## Solution
+[//]: # > > 1. 3 levels
+[//]: # > > 2. `print_message`
+[//]: # > > 3. 11
+[//]: # > > 4. `KeyError`
+[//]: # > > 5. There isn't really a message; you're supposed to infer that `Friday` is not a key in `messages`.
 > {: .solution}
 {: .challenge}
 
