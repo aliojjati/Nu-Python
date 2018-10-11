@@ -51,14 +51,14 @@ favorite_ice_cream()
 IndexError                                Traceback (most recent call last)
 <ipython-input-1-70bd89baa4df> in <module>()
       6     print(ice_creams[3])
-      7 
+      7
 ----> 8 favorite_ice_cream()
 
 <ipython-input-1-70bd89baa4df> in favorite_ice_cream()
       4         "vanilla",                                                                    "strawberry"
       5     ]
 ----> 6     print(ice_creams[3])
-      7 
+      7
       8 favorite_ice_cream()
 
 IndexError: list index out of range
@@ -503,17 +503,17 @@ often reveals common reasons why you might get that error.
 > {: .python}
 >
 > > ## Solution
-> > `SyntaxError` for missing `():` at end of first line,
+[//]: # > > `SyntaxError` for missing `():` at end of first line,
 > `IndentationError` for mismatch between second and third lines.
-> > A fixed version is:
-> >
-> > ~~~
-> > def another_function():
-> >     print("Syntax errors are annoying.")
-> >     print("But at least python tells us about them!")
-> >     print("So they are usually not too hard to fix.")
-> > ~~~
-> > {: .python}
+[//]: # > > A fixed version is:
+[//]: # > >
+[//]: # > > ~~~
+[//]: # > > def another_function():
+[//]: # > >     print("Syntax errors are annoying.")
+[//]: # > >     print("But at least python tells us about them!")
+[//]: # > >     print("So they are usually not too hard to fix.")
+[//]: # > > ~~~
+[//]: # > > {: .python}
 > {: .solution}
 {: .challenge}
 
@@ -570,14 +570,14 @@ often reveals common reasons why you might get that error.
 > ~~~
 > {: .python}
 >
-> > ## Solution
-> > `IndexError`; the last entry is `seasons[3]`, so `seasons[4]` doesn't make sense.
-> > A fixed version is:
-> >
-> > ~~~
-> > seasons = ['Spring', 'Summer', 'Fall', 'Winter']
-> > print('My favorite season is ', seasons[-1])
-> > ~~~
-> > {: .python}
+[//]: # > > ## Solution
+[//]: # > > `IndexError`; the last entry is `seasons[3]`, so `seasons[4]` doesn't make sense.
+[//]: # > > A fixed version is:
+[//]: # > >
+[//]: # > > ~~~
+[//]: # > > seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+[//]: # > > print('My favorite season is ', seasons[-1])
+[//]: # > > ~~~
+[//]: # > > {: .python}
 > {: .solution}
 {: .challenge}
