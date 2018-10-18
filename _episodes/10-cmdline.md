@@ -112,9 +112,6 @@ and a placeholder for the function that does the actual work.
 By convention this function is usually called `main`,
 though we can call it whatever we want:
 
-~~~
-$ [//]: #> > cat readings_01.py
-~~~
 {: .bash}
 
 ~~~
@@ -144,9 +141,6 @@ There is no output because we have defined a function,
 but haven't actually called it.
 Let's add a call to `main`:
 
-~~~
-$ [//]: #> > cat readings_02.py
-~~~
 {: .bash}
 
 ~~~
@@ -294,9 +288,7 @@ small-01.csv small-02.csv small-03.csv
 ~~~
 {: .output}
 
-~~~
-$ [//]: #> > cat small-01.csv
-~~~
+
 {: .bash}
 
 ~~~
@@ -343,9 +335,7 @@ and includes all the filenames.
 Here's our changed program
 `readings_03.py`:
 
-~~~
-$ [//]: #> > cat readings_03.py
-~~~
+
 {: .bash}
 
 ~~~
@@ -399,9 +389,7 @@ The next step is to teach our program to pay attention to the `--min`, `--mean`,
 These always appear before the names of the files,
 so we could just do this:
 
-~~~
-$ [//]: #> > cat readings_04.py
-~~~
+
 {: .bash}
 
 ~~~
@@ -418,15 +406,6 @@ def main():
 
         You do the rest !
 
-        <!-- if action == '--min':
-            values = numpy.min(data, axis=1)
-        elif action == '--mean':
-            values = numpy.mean(data, axis=1)
-        elif action == '--max':
-            values = numpy.max(data, axis=1)
-
-        for m in values:
-            print(m) -->
 
 if __name__ == '__main__':
    main()
@@ -485,15 +464,8 @@ def main():
 def process(filename, action):
     data = numpy.loadtxt(filename, delimiter=',')
 
-    if action == '--min':
-        values = numpy.min(data, axis=1)
-    elif action == '--mean':
-        values = numpy.mean(data, axis=1)
-    elif action == '--max':
-        values = numpy.max(data, axis=1)
+    You do the rest !
 
-    for m in values:
-        print(m)
 
 if __name__ == '__main__':
    main()
@@ -511,9 +483,6 @@ redirect input to it,
 and so on.
 Let's experiment in another script called `count_stdin.py`:
 
-~~~
-$ [//]: #> > cat count_stdin.py
-~~~
 {: .bash}
 
 ~~~
@@ -565,9 +534,7 @@ Luckily,
 so we don't actually need to change `process`.
 Only `main` changes:
 
-~~~
-$ [//]: #> > cat readings_06.py
-~~~
+
 {: .bash}
 
 ~~~
@@ -581,26 +548,6 @@ def main():
 
     You do the rest !
 
-    <!-- assert action in ['--min', '--mean', '--max'], \
-           'Action is not one of --min, --mean, or --max: ' + action
-    if len(filenames) == 0:
-        process(sys.stdin, action)
-    else:
-        for f in filenames:
-            process(f, action)
-
-def process(filename, action):
-    data = numpy.loadtxt(filename, delimiter=',')
-
-    if action == '--min':
-        values = numpy.min(data, axis=1)
-    elif action == '--mean':
-        values = numpy.mean(data, axis=1)
-    elif action == '--max':
-        values = numpy.max(data, axis=1)
-
-    for m in values:
-        print(m) -->
 
 if __name__ == '__main__':
    main()
