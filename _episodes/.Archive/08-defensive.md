@@ -459,14 +459,14 @@ This violates another important rule of programming:
 > Compare your answer to your neighbor's:
 > can you think of a function that will pass your tests but not his/hers or vice versa?
 >
-> > ## Solution
-> > ~~~
-> > # a possible pre-condition:
-> > assert len(input) > 0, 'List length must be non-zero'
-> > # a possible post-condition:
-> > assert numpy.min(input) < average < numpy.max(input), 'Average should be between min and max of input values'
-> > ~~~
-> > {: .python}
+[//]: # > > ## Solution
+[//]: # > > ~~~
+[//]: # > > # a possible pre-condition:
+[//]: # > > assert len(input) > 0, 'List length must be non-zero'
+[//]: # > > # a possible post-condition:
+[//]: # > > assert numpy.min(input) < average < numpy.max(input), 'Average should be between min and max of input values'
+[//]: # > > ~~~
+[//]: # > > {: .python}
 > {: .solution}
 {: .challenge}
 
@@ -511,13 +511,13 @@ This violates another important rule of programming:
 > ~~~
 > {: .python}
 >
-> > ## Solution
-> > *   The first assertion checks that the input sequence `values` is not empty.
-> >     An empty sequence such as `[]` will make it fail.
-> > *   The second assertion checks that each value in the list can be turned into an integer.
-> >     Input such as `[1, 2,'c', 3]` will make it fail.
-> > *   The third assertion checks that the total of the list is greater than 0.
-> >     Input such as `[-10, 2, 3]` will make it fail.
+[//]: # > > ## Solution
+[//]: # > > *   The first assertion checks that the input sequence `values` is not empty.
+[//]: # > >     An empty sequence such as `[]` will make it fail.
+[//]: # > > *   The second assertion checks that each value in the list can be turned into an integer.
+[//]: # > >     Input such as `[1, 2,'c', 3]` will make it fail.
+[//]: # > > *   The third assertion checks that the total of the list is greater than 0.
+[//]: # > >     Input such as `[-10, 2, 3]` will make it fail.
 > {: .solution}
 {: .challenge}
 

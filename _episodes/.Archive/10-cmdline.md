@@ -32,42 +32,6 @@ and prints the average inflammation per patient.
 > command that tells you to run that command in the shell rather than the Python interpreter.
 {: .callout}
 
-This program does exactly what we want - it prints the average inflammation per patient
-for a given file.
-
-~~~
-$ python code/readings_04.py --mean data/inflammation-01.csv
-5.45
-5.425
-6.1
-...
-6.4
-7.05
-5.9
-~~~
-{: .bash}
-
-We might also want to look at the minimum of the first four lines
-
-~~~
-$ head -4 data/inflammation-01.csv | python code/readings_04.py --min
-~~~
-{: .bash}
-
-or the maximum inflammations in several files one after another:
-
-~~~
-$ python code/readings_04.py --max data/inflammation-*.csv
-~~~
-{: .bash}
-
-Our scripts should do the following:
-
-1. If no filename is given on the command line, read data from [standard input]({{ page.root }}/reference/#standard-input).
-2. If one or more filenames are given, read data from them and report statistics for each file separately.
-3. Use the `--min`, `--mean`, or `--max` flag to determine what statistic to print.
-
-To make this work,
 we need to know how to handle command-line arguments in a program,
 and how to get at standard input.
 We'll tackle these questions in turn below.
@@ -148,9 +112,6 @@ and a placeholder for the function that does the actual work.
 By convention this function is usually called `main`,
 though we can call it whatever we want:
 
-~~~
-$ cat readings_01.py
-~~~
 {: .bash}
 
 ~~~
@@ -180,9 +141,6 @@ There is no output because we have defined a function,
 but haven't actually called it.
 Let's add a call to `main`:
 
-~~~
-$ cat readings_02.py
-~~~
 {: .bash}
 
 ~~~
@@ -330,9 +288,7 @@ small-01.csv small-02.csv small-03.csv
 ~~~
 {: .output}
 
-~~~
-$ cat small-01.csv
-~~~
+
 {: .bash}
 
 ~~~
@@ -379,9 +335,7 @@ and includes all the filenames.
 Here's our changed program
 `readings_03.py`:
 
-~~~
-$ cat readings_03.py
-~~~
+
 {: .bash}
 
 ~~~
@@ -435,9 +389,7 @@ The next step is to teach our program to pay attention to the `--min`, `--mean`,
 These always appear before the names of the files,
 so we could just do this:
 
-~~~
-$ cat readings_04.py
-~~~
+
 {: .bash}
 
 ~~~
@@ -452,15 +404,8 @@ def main():
     for f in filenames:
         data = numpy.loadtxt(f, delimiter=',')
 
-        if action == '--min':
-            values = numpy.min(data, axis=1)
-        elif action == '--mean':
-            values = numpy.mean(data, axis=1)
-        elif action == '--max':
-            values = numpy.max(data, axis=1)
+        You do the rest !
 
-        for m in values:
-            print(m)
 
 if __name__ == '__main__':
    main()
@@ -499,7 +444,7 @@ before doing any processing,
 so that the program fails fast:
 
 ~~~
-$ cat readings_05.py
+$ > > cat readings_05.py
 ~~~
 {: .bash}
 
@@ -508,26 +453,10 @@ import sys
 import numpy
 
 def main():
-    script = sys.argv[0]
-    action = sys.argv[1]
-    filenames = sys.argv[2:]
-    assert action in ['--min', '--mean', '--max'], \
-           'Action is not one of --min, --mean, or --max: ' + action
-    for f in filenames:
-        process(f, action)
 
-def process(filename, action):
-    data = numpy.loadtxt(filename, delimiter=',')
 
-    if action == '--min':
-        values = numpy.min(data, axis=1)
-    elif action == '--mean':
-        values = numpy.mean(data, axis=1)
-    elif action == '--max':
-        values = numpy.max(data, axis=1)
+    You do the rest !
 
-    for m in values:
-        print(m)
 
 if __name__ == '__main__':
    main()
@@ -545,9 +474,6 @@ redirect input to it,
 and so on.
 Let's experiment in another script called `count_stdin.py`:
 
-~~~
-$ cat count_stdin.py
-~~~
 {: .bash}
 
 ~~~
@@ -599,9 +525,7 @@ Luckily,
 so we don't actually need to change `process`.
 Only `main` changes:
 
-~~~
-$ cat readings_06.py
-~~~
+
 {: .bash}
 
 ~~~
@@ -612,26 +536,9 @@ def main():
     script = sys.argv[0]
     action = sys.argv[1]
     filenames = sys.argv[2:]
-    assert action in ['--min', '--mean', '--max'], \
-           'Action is not one of --min, --mean, or --max: ' + action
-    if len(filenames) == 0:
-        process(sys.stdin, action)
-    else:
-        for f in filenames:
-            process(f, action)
 
-def process(filename, action):
-    data = numpy.loadtxt(filename, delimiter=',')
+    You do the rest !
 
-    if action == '--min':
-        values = numpy.min(data, axis=1)
-    elif action == '--mean':
-        values = numpy.mean(data, axis=1)
-    elif action == '--max':
-        values = numpy.max(data, axis=1)
-
-    for m in values:
-        print(m)
 
 if __name__ == '__main__':
    main()
@@ -761,40 +668,6 @@ the program now does everything we set out to do.
 > Is the code easier to read?
 > Is the program easier to understand?
 >
-> > ## Solution
-> > ~~~
-> > import sys
-> > import numpy
-> >
-> > def main():
-> >     script = sys.argv[0]
-> >     action = sys.argv[1]
-> >     filenames = sys.argv[2:]
-> >     assert action in ['-n', '-m', '-x'], \
-> >            'Action is not one of -n, -m, or -x: ' + action
-> >     if len(filenames) == 0:
-> >         process(sys.stdin, action)
-> >     else:
-> >         for f in filenames:
-> >             process(f, action)
-> >
-> > def process(filename, action):
-> >     data = numpy.loadtxt(filename, delimiter=',')
-> >
-> >     if action == '-n':
-> >         values = numpy.min(data, axis=1)
-> >     elif action == '-m':
-> >         values = numpy.mean(data, axis=1)
-> >     elif action == '-x':
-> >         values = numpy.max(data, axis=1)
-> >
-> >     for m in values:
-> >         print(m)
-> >
-> > main()
-> > ~~~
-> > {: .python}
-> {: .solution}
 {: .challenge}
 
 > ## Adding a Help Message
@@ -804,48 +677,6 @@ the program now does everything we set out to do.
 > (i.e., no action is specified and no filenames are given),
 > it prints a message explaining how it should be used.
 >
-> > ## Solution
-> > ~~~
-> > # this is code/readings_08.py
-> > import sys
-> > import numpy
-> >
-> > def main():
-> >     script = sys.argv[0]
-> >     if len(sys.argv) == 1: # no arguments, so print help message
-> >         print("""Usage: python readings_08.py action filenames
-> >               action must be one of --min --mean --max
-> >               if filenames is blank, input is taken from stdin;
-> >               otherwise, each filename in the list of arguments is processed in turn""")
-> >         return
-> >
-> >     action = sys.argv[1]
-> >     filenames = sys.argv[2:]
-> >     assert action in ['--min', '--mean', '--max'], \
-> >            'Action is not one of --min, --mean, or --max: ' + action
-> >     if len(filenames) == 0:
-> >         process(sys.stdin, action)
-> >     else:
-> >         for f in filenames:
-> >             process(f, action)
-> >
-> > def process(filename, action):
-> >     data = numpy.loadtxt(filename, delimiter=',')
-> >
-> >     if action == '--min':
-> >         values = numpy.min(data, axis=1)
-> >     elif action == '--mean':
-> >         values = numpy.mean(data, axis=1)
-> >     elif action == '--max':
-> >         values = numpy.max(data, axis=1)
-> >
-> >     for m in values:
-> >         print(m)
-> >
-> > main()
-> > ~~~
-> > {: .python}
-> {: .solution}
 {: .challenge}
 
 > ## Adding a Default Action
@@ -854,43 +685,6 @@ the program now does everything we set out to do.
 > modify `readings.py` so that if no action is given
 > it displays the means of the data.
 >
-> > ## Solution
-> > ~~~
-> > import sys
-> > import numpy
-> >
-> > def main():
-> >     script = sys.argv[0]
-> >     action = sys.argv[1]
-> >     if action not in ['--min', '--mean', '--max']: # if no action given
-> >         action = '--mean'    # set a default action, that being mean
-> >         filenames = sys.argv[1:] # start the filenames one place earlier in the argv list
-> >     else:
-> >         filenames = sys.argv[2:]
-> >
-> >     if len(filenames) == 0:
-> >         process(sys.stdin, action)
-> >     else:
-> >         for f in filenames:
-> >             process(f, action)
-> >
-> > def process(filename, action):
-> >     data = numpy.loadtxt(filename, delimiter=',')
-> >
-> >     if action == '--min':
-> >         values = numpy.min(data, axis=1)
-> >     elif action == '--mean':
-> >         values = numpy.mean(data, axis=1)
-> >     elif action == '--max':
-> >         values = numpy.max(data, axis=1)
-> >
-> >     for m in values:
-> >         print(m)
-> >
-> > main()
-> > ~~~
-> > {: .python}
-> {: .solution}
 {: .challenge}
 
 > ## A File-Checker
