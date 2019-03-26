@@ -285,7 +285,8 @@ are their daily inflammation measurements.
 > print(third, fourth)
 > ~~~
 > {: .python}
->
+{: .challenge}
+
 > ## Slicing Strings
 >
 > A section of an array is called a [slice]({{ page.root }}/reference/#slice).
@@ -315,4 +316,4 @@ are their daily inflammation measurements.
 >
 > Given those answers,
 > explain what `element[1:-1]` does.
->
+{: .challenge}
