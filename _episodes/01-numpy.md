@@ -261,3 +261,58 @@ an N-dimensional array created by the NumPy library.
 These data correspond to arthritis patients' inflammation.
 The rows are the individual patients and the columns
 are their daily inflammation measurements.
+
+> ## Check Your Understanding
+>
+> Draw diagrams showing what variables refer to what values after each statement in the following program:
+>
+> ~~~
+> mass = 47.5
+> age = 122
+> mass = mass * 2.0
+> age = age - 20
+> ~~~
+> {: .python}
+{: .challenge}
+
+> ## Sorting Out References
+>
+> What does the following program print out?
+>
+> ~~~
+> first, second = 'Grace', 'Hopper'
+> third, fourth = second, first
+> print(third, fourth)
+> ~~~
+> {: .python}
+>
+> ## Slicing Strings
+>
+> A section of an array is called a [slice]({{ page.root }}/reference/#slice).
+> We can take slices of character strings as well:
+>
+> ~~~
+> element = 'oxygen'
+> print('first three characters:', element[0:3])
+> print('last three characters:', element[3:6])
+> ~~~
+> {: .python}
+>
+> ~~~
+> first three characters: oxy
+> last three characters: gen
+> ~~~
+> {: .output}
+>
+> What is the value of `element[:4]`?
+> What about `element[4:]`?
+> Or `element[:]`?
+>
+>
+> What is `element[-1]`?
+> What is `element[-2]`?
+>
+>
+> Given those answers,
+> explain what `element[1:-1]` does.
+>
