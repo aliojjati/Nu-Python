@@ -1,7 +1,7 @@
 ---
 title: Analyzing Patient Data
-teaching: 
-exercises: 
+teaching:
+exercises:
 questions:
 - "How can I process tabular data files in Python?"
 objectives:
@@ -168,7 +168,7 @@ import numpy
 Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench.
 Libraries provide additional functionality to the basic Python package,
 much like a new piece of equipment adds functionality to a lab space. Just like in the lab, importing too many libraries
-can sometimes complicate and slow down your programs - so we only import what we need for each program. 
+can sometimes complicate and slow down your programs - so we only import what we need for each program.
 Once you've imported the library,
 we can ask the library to read our data file for us:
 
@@ -960,30 +960,30 @@ the graphs will actually be squeezed together more closely.)
 [//]: #  ## Solution
 [//]: #  Because matplotlib interpolates (draws a straight line) between the points.
 [//]: #  One way to do avoid this is to use the Matplotlib `drawstyle` option:
-[//]: # 
+[//]: #
 [//]: #  ~~~
 [//]: #  import numpy
 [//]: #  import matplotlib.pyplot
-[//]: # 
+[//]: #
 [//]: #  data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
-[//]: # 
+[//]: #
 [//]: #  fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-[//]: # 
+[//]: #
 [//]: #  axes1 = fig.add_subplot(1, 3, 1)
 [//]: #  axes2 = fig.add_subplot(1, 3, 2)
 [//]: #  axes3 = fig.add_subplot(1, 3, 3)
-[//]: # 
+[//]: #
 [//]: #  axes1.set_ylabel('average')
 [//]: #  axes1.plot(numpy.mean(data, axis=0), drawstyle='steps-mid')
-[//]: # 
+[//]: #
 [//]: #  axes2.set_ylabel('max')
 [//]: #  axes2.plot(numpy.max(data, axis=0), drawstyle='steps-mid')
-[//]: # 
+[//]: #
 [//]: #  axes3.set_ylabel('min')
 [//]: #  axes3.plot(numpy.min(data, axis=0), drawstyle='steps-mid')
-[//]: # 
+[//]: #
 [//]: #  fig.tight_layout()
-[//]: # 
+[//]: #
 [//]: #  matplotlib.pyplot.show()
 [//]: #  ~~~
 [//]: #  {: .python}
@@ -1014,28 +1014,28 @@ the graphs will actually be squeezed together more closely.)
 [//]: #  ~~~
 [//]: #  import numpy
 [//]: #  import matplotlib.pyplot
-[//]: # 
+[//]: #
 [//]: #  data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
-[//]: # 
+[//]: #
 [//]: #  # change figsize (swap width and height)
 [//]: #  fig = matplotlib.pyplot.figure(figsize=(3.0, 10.0))
-[//]: # 
+[//]: #
 [//]: #  # change add_subplot (swap first two parameters)
 [//]: #  axes1 = fig.add_subplot(3, 1, 1)
 [//]: #  axes2 = fig.add_subplot(3, 1, 2)
 [//]: #  axes3 = fig.add_subplot(3, 1, 3)
-[//]: # 
+[//]: #
 [//]: #  axes1.set_ylabel('average')
 [//]: #  axes1.plot(numpy.mean(data, axis=0))
-[//]: # 
+[//]: #
 [//]: #  axes2.set_ylabel('max')
 [//]: #  axes2.plot(numpy.max(data, axis=0))
-[//]: # 
+[//]: #
 [//]: #  axes3.set_ylabel('min')
 [//]: #  axes3.plot(numpy.min(data, axis=0))
-[//]: # 
+[//]: #
 [//]: #  fig.tight_layout()
-[//]: # 
+[//]: #
 [//]: #  matplotlib.pyplot.show()
 [//]: #  ~~~
 [//]: #  {: .python}
@@ -1087,7 +1087,8 @@ the graphs will actually be squeezed together more closely.)
 > and stacks them into a 3x2 array.
 > Make sure to `print` the results to verify your solution.
 >
-{: .challenge}
+
+>{: .challenge}
 
 >## Change In Inflamation
 >
@@ -1095,7 +1096,7 @@ the graphs will actually be squeezed together more closely.)
 >series of observations relating to one individual. This means that change
 >inflamation is a meaningful concept.
 >
->The `numpy.diff()` function takes a NumPy array and returns the 
+>The `numpy.diff()` function takes a NumPy array and returns the
 >difference along a specified axis.
 >
 >Which axis would it make sense to use this function along?
@@ -1105,7 +1106,7 @@ the graphs will actually be squeezed together more closely.)
 [//]: #  difference between two arbitrary patients. The column axis (1) is in
 [//]: #  days, so the differnce is the change in inflamation -- a meaningful
 [//]: #  concept.
-[//]: # 
+[//]: #
 [//]: #  ~~~
 [//]: #  numpy.diff(data, axis=1)
 [//]: #  ~~~
@@ -1127,12 +1128,12 @@ the graphs will actually be squeezed together more closely.)
 [//]: #  ## Solution
 [//]: #  By using the `numpy.max()` function after you apply the `numpy.diff()`
 [//]: #  function, you will get the largest difference between days.
-[//]: # 
+[//]: #
 [//]: #  ~~~
 [//]: #  numpy.max(numpy.diff(data, axis=1), axis=1)
 [//]: #  ~~~
 [//]: #  {: .python}
-[//]: # 
+[//]: #
 [//]: #  ~~~
 [//]: #  array([  7.,  12.,  11.,  10.,  11.,  13.,  10.,   8.,  10.,  10.,   7.,
 [//]: #           7.,  13.,   7.,  10.,  10.,   8.,  10.,   9.,  10.,  13.,   7.,
@@ -1142,19 +1143,19 @@ the graphs will actually be squeezed together more closely.)
 [//]: #           8.,  12.,  10.,   7.,  12.])
 [//]: #  ~~~
 [//]: #  {: .python}
-[//]: # 
+[//]: #
 [//]: #  If a difference is a *decrease*, then the difference will be negative. If
 [//]: #  you are interested in the **magnitude** of the change and not just the
 [//]: #  direction, the `numpy.absolute()` function will provide that.
-[//]: # 
+[//]: #
 [//]: #  Notice the difference if you get the largest _absolute_ difference
 [//]: #  between readings.
-[//]: # 
+[//]: #
 [//]: #  ~~~
 [//]: #  numpy.max(numpy.absolute(numpy.diff(data, axis=1)), axis=1)
 [//]: #  ~~~
 [//]: #  {: .python}
-[//]: # 
+[//]: #
 [//]: #  ~~~
 [//]: #  array([ 12.,  14.,  11.,  13.,  11.,  13.,  10.,  12.,  10.,  10.,  10.,
 [//]: #          12.,  13.,  10.,  11.,  10.,  12.,  13.,   9.,  10.,  13.,   9.,
@@ -1164,6 +1165,6 @@ the graphs will actually be squeezed together more closely.)
 [//]: #          11.,  13.,  10.,  10.,  12.])
 [//]: #  ~~~
 [//]: #  {: .python}
-[//]: # 
+[//]: #
 > {: .solution}
 {: .challenge}

@@ -341,16 +341,6 @@ so we should always use it when we can.
 > and produces a new string with the characters in reverse order,
 > so `'Newton'` becomes `'notweN'`.
 >
-[//]: #> > ## Solution
-[//]: #> > ~~~
-[//]: #> > newstring = ''
-[//]: #> > oldstring = 'Newton'
-[//]: #> > for char in oldstring:
-[//]: #> >    newstring = char + newstring
-[//]: #> > print(newstring)
-[//]: #> > ~~~
-[//]: #> > {: .python}
-> {: .solution}
 {: .challenge}
 
 > ## Computing the Value of a Polynomial
